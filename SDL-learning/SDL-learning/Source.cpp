@@ -69,7 +69,25 @@ int main(int argc, char* args[])
 			SDL_UpdateWindowSurface(gWindow);
 		}
 	}
-	SDL_Delay(2000);
+
+	bool quit = false;
+	SDL_Event quitting;
+
+	//game loop
+	while (!quit)
+	{
+		while (SDL_PollEvent(&quitting) != 0)
+		{
+		//quit event
+		if (quitting.type == SDL_QUIT) {
+			quit = true;
+		}
+		}
+
+		SDL_BlitSurface(gHelloWorld, NULL, gScreenSurface, NULL);
+		SDL_UpdateWindowSurface(gWindow);
+	}
+
 	close();
 	return 0;
 }

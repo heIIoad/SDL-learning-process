@@ -161,7 +161,14 @@ int main(int argc, char* args[])
 			}
 		}
 
-		SDL_BlitSurface(gCurrentSurface, NULL, gScreenSurface, NULL);
+		//streching images
+		SDL_Rect stretchRect;
+		stretchRect.x = 0;
+		stretchRect.y = 0;
+		stretchRect.w = SCREEN_WIDTH;
+		stretchRect.h = SCREEN_HEIGHT;
+		SDL_BlitScaled(gCurrentSurface, NULL, gScreenSurface, &stretchRect);
+		//SDL_BlitSurface(gCurrentSurface, NULL, gScreenSurface, NULL);
 		SDL_UpdateWindowSurface(gWindow);
 	}
 

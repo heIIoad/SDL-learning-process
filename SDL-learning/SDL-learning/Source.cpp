@@ -1,6 +1,7 @@
 #include <SDL.h>
 #include <stdio.h>
 #include <iostream>
+#include <SDL_image.h>
 
 SDL_Window* gWindow = NULL;
 SDL_Surface* gScreenSurface = NULL;
@@ -25,6 +26,7 @@ bool init() {
 		}
 		else
 		{
+			int imgFlags = IMG_INIT_PNG;
 			gScreenSurface = SDL_GetWindowSurface(gWindow);
 		}
 	}
@@ -95,11 +97,11 @@ void close(){
 
 SDL_Surface* loadSurface(std::string path)
 {
-	SDL_Surface* optimizedSurface=NULL;
-	SDL_Surface* loadedSurface = SDL_LoadBMP(path.c_str());
+	SDL_Surface* optimizedSurface = NULL;
+	SDL_Surface* loadedSurface = IMG_Load(path.c_str());
 	if (loadedSurface == NULL)
 	{
-		std::cout << "unable to load the image: " << path.c_str() << "Error: " << SDL_GetError()<<"\n";
+		std::cout << "unable to load the image: " << path.c_str() << "Error: " << IMG_GetError()<<"\n";
 	}
 	else
 	{
